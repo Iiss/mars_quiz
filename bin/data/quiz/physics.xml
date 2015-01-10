@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+	<task>
+		<quiestion><![CDATA[Question1]]></quiestion>
+		<answers>
+			<answer><![CDATA[Answer1]]></answer>
+			<answer><![CDATA[Answer2]]></answer>
+			<answer><![CDATA[Answer3]]></answer>
+			<answer><![CDATA[Answer4]]></answer>
+		</answers>
+	</task>
+</data>
