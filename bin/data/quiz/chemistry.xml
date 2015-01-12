@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <data>
 	<task>
-		<quiestion><![CDATA[Question1]]></quiestion>
+		<question><![CDATA[Question1]]></question>
 		<answers>
 			<answer><![CDATA[Answer1]]></answer>
 			<answer><![CDATA[Answer2]]></answer>
