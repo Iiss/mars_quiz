@@ -7,6 +7,11 @@
 	<s:layout>
 		<s:VerticalLayout horizontalAlign="center"/>
 	</s:layout>
+	<s:states>
+		<s:State name="default"/>
+		<s:State name="loading_state"/>
+		<s:State name="quiz_ready_state"/>
+	</s:states>
 	<fx:Script>
 		<![CDATA[
 		import robotlegs.bender.framework.api.IContext;
@@ -23,12 +28,15 @@
 				.install(MVCSBundleNoTraceLog)
 				.configure(new MainViewConfig())
 				.configure(new ContextView(this)));
+				
+			currentState = "default";
 		}
 		]]>
 	</fx:Script>
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
-	<views:Contents/>
-
+	<views:Contents includeIn="default"/>
+<mx:ProgressBar indeterminate="true" label="Загрузка" includeIn="loading_state"/>
+<views:Quiz includeIn="quiz_ready_state"/>
 </s:Application>

@@ -39,5 +39,10 @@ package mvc.models
 		{
 			return _currentIndex;
 		}
+		
+		public function get quizList():ArrayList 
+		{ 
+			return _quizList;
+		}
 	}
 }

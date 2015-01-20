@@ -1,17 +1,20 @@
 package  
 {
+	import mvc.commands.LoadConfigCommand;
+	import mvc.commands.LoadQuizCommand;
+	import mvc.events.QuizEvent;
+	import mvc.mediators.ContentsMediator;
+	import mvc.mediators.QuizMediator;
+	import mvc.models.ContentsModel;
+	import mvc.models.QuizModel;
+	import mvc.views.Contents;
+	import mvc.views.Quiz;
 	import robotlegs.bender.extensions.contextView.ContextView;
+	import robotlegs.bender.extensions.directCommandMap.api.IDirectCommandMap;
 	import robotlegs.bender.extensions.eventCommandMap.api.IEventCommandMap;
 	import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
 	import robotlegs.bender.framework.api.IConfig;
 	import robotlegs.bender.framework.api.IInjector;
-	import robotlegs.bender.extensions.directCommandMap.api.IDirectCommandMap;
-	import mvc.commands.LoadConfigCommand;
-	import mvc.models.ContentsModel;
-	import mvc.views.Contents;
-	import mvc.mediators.ContentsMediator;
-	import mvc.events.QuizEvent;
-	import mvc.commands.LoadQuizCommand;
 	/**
 	 * ...
 	 * @author liss
@@ -43,15 +46,15 @@ package
 		{
 			//MODELS
 			injector.map(ContentsModel).toValue(new ContentsModel);
-			//injector.map(TaskEditor).asSingleton();
+			injector.map(QuizModel).asSingleton();
 			
 			//MEDIATORS
 			mediatorMap.map(Contents).toMediator(ContentsMediator);
-			//mediatorMap.map(Main).toMediator(MainMediator);
-			//mediatorMap.map(ChapterEditor).toMediator(ChapterEditorMediator);
+			mediatorMap.map(Quiz).toMediator(QuizMediator);
 			
 			//Events
 			eventCommandMap.map(QuizEvent.QUIZ_START, QuizEvent).toCommand(LoadQuizCommand);
+			
 			//Commands
 			directCommandMap.map(LoadConfigCommand).execute();
 		}
