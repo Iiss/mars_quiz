@@ -9,6 +9,8 @@ package mvc.events
 	public class QuizEvent extends Event 
 	{
 		public static const QUIZ_START:String = "QuizEvent.QUIZ_START";
+		public static const ANSWER_SELECTED:String = "QuizEvent.ANSWER_SELECTED";
+		public static const CURRENT_INDEX_CHANGED:String = "QuizEvent.CURRENT_INDEX_CHANGED";
 		
 		public var quizId:String;
 		

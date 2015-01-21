@@ -15,6 +15,7 @@ package
 	import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
 	import robotlegs.bender.framework.api.IConfig;
 	import robotlegs.bender.framework.api.IInjector;
+	import mvc.commands.ShowNextTaskCommand;
 	/**
 	 * ...
 	 * @author liss
@@ -54,6 +55,7 @@ package
 			
 			//Events
 			eventCommandMap.map(QuizEvent.QUIZ_START, QuizEvent).toCommand(LoadQuizCommand);
+			eventCommandMap.map(QuizEvent.ANSWER_SELECTED, QuizEvent).toCommand(ShowNextTaskCommand);
 			
 			//Commands
 			directCommandMap.map(LoadConfigCommand).execute();

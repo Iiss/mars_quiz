@@ -6,18 +6,14 @@
 	<s:layout>
 		<s:VerticalLayout horizontalAlign="center"/>
 	</s:layout>
-	<fx:Script>
-		<![CDATA[
-		private function getLabel():void
-		{
-			
-		}
-		]]>
-	</fx:Script>
 	
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	<s:TextArea id="quiestion_txt" selectable="false" editable="false" />
-	<s:List id="answers_list" labelFunction="getLabel" />
+	<s:List id="answers_list"  itemRenderer="mvc.renderers.StringAnswerRenderer" borderVisible="false">
+		<s:layout>
+			<s:TileLayout requestedColumnCount="2"/>
+		</s:layout>
+	</s:List>
 </s:Group>

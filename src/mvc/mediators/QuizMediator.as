@@ -4,6 +4,8 @@ package mvc.mediators
 	import mvc.models.TaskModel;
 	import robotlegs.bender.bundles.mvcs.Mediator;
 	import mvc.views.Quiz;
+	import flash.events.MouseEvent;
+	import mvc.events.QuizEvent;
 	/**
 	 * ...
 	 * @author liss
@@ -23,15 +25,31 @@ package mvc.mediators
 		
 		override public function initialize():void 
 		{
-			view.quiestion_txt.text = "hello";
 			super.initialize();
+			
+			//MODEL
+			eventMap.mapListener(quizModel, QuizEvent.CURRENT_INDEX_CHANGED, updateQuizPage);
+			//VIEW
+			eventMap.mapListener(view.answers_list, MouseEvent.MOUSE_DOWN, _onAnswerClick);
+			
+			updateQuizPage();
 		}
 		
-		private function updateQuizPage():void
+		private function updateQuizPage(e:*=null):void
 		{
-			var task:TaskModel = quizModel.quizList[0] as TaskModel;
-			view.quiestion_txt.text = task.question;
-			view.answers_list.dataProvider = task.answers;
+			var task:TaskModel = quizModel.quizList.getItemAt(quizModel.currentIndex) as TaskModel;
+			
+			if (task)
+			{
+				view.quiestion_txt.text = task.question;
+				view.answers_list.dataProvider = task.answers;
+			}
+		}
+		
+		private function _onAnswerClick(e:MouseEvent):void
+		{
+			var quizEvent:QuizEvent = new QuizEvent(QuizEvent.ANSWER_SELECTED);
+				dispatch(quizEvent);
 		}
 	
 	}

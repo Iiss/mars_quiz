@@ -1,11 +1,13 @@
 package mvc.models 
 {
+	import flash.events.EventDispatcher;
+	import mvc.events.QuizEvent;
 	import mx.collections.ArrayList;
 	/**
 	 * ...
 	 * @author liss
 	 */
-	public class QuizModel 
+	public class QuizModel extends EventDispatcher
 	{
 		private var _quizList:ArrayList;
 		private var _currentIndex:int;
@@ -33,11 +35,25 @@ package mvc.models
 				
 				_quizList.addItem(task)
 			}
+			
+			if (_quizList.length > 0)
+			{
+				currentIndex = 0;
+			}
 		}
 		
 		public function get currentIndex():int
 		{
 			return _currentIndex;
+		}
+		
+		public function set currentIndex(value:int):void
+		{
+			if (_currentIndex != value)
+			{
+				_currentIndex = value;
+				dispatchEvent(new QuizEvent(QuizEvent.CURRENT_INDEX_CHANGED));
+			}
 		}
 		
 		public function get quizList():ArrayList 
