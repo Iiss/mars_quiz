@@ -1,16 +1,15 @@
 package mvc.models 
 {
-	import flash.events.EventDispatcher;
-	import mvc.events.QuizEvent;
 	import mx.collections.ArrayList;
 	/**
 	 * ...
 	 * @author liss
 	 */
-	public class QuizModel extends EventDispatcher
+	public class QuizModel extends AbstractNotifier
 	{
 		private var _quizList:ArrayList;
 		private var _currentIndex:int;
+		private var _score:int;
 		
 		public function QuizModel() 
 		{
@@ -52,7 +51,7 @@ package mvc.models
 			if (_currentIndex != value)
 			{
 				_currentIndex = value;
-				dispatchEvent(new QuizEvent(QuizEvent.CURRENT_INDEX_CHANGED));
+				notifyPropertyChanged("currentIndex");
 			}
 		}
 		

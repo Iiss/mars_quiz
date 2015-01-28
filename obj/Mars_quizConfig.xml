@@ -16,32 +16,20 @@
     </define>
     <define append="true">
       <name>CONFIG::timeStamp</name>
-      <value>'21.01.2015'</value>
-    </define>
-    <define append="true">
-      <name>CONFIG::air</name>
-      <value>false</value>
-    </define>
-    <define append="true">
-      <name>CONFIG::mobile</name>
-      <value>false</value>
-    </define>
-    <define append="true">
-      <name>CONFIG::desktop</name>
-      <value>false</value>
+      <value>'28.01.2015'</value>
     </define>
     <verbose-stacktraces>true</verbose-stacktraces>
     <source-path append="true">
-      <path-element>C:\#workspace\#mars\mars_quiz\src</path-element>
-      <path-element>C:\#workspace\#mars\mars_quiz\lib</path-element>
+      <path-element>D:\#workspace\#mars\mars_quiz\src</path-element>
+      <path-element>D:\#workspace\#mars\mars_quiz\lib</path-element>
       <path-element>C:\Program Files (x86)\FlashDevelop\Library\AS3\classes</path-element>
     </source-path>
     <library-path append="true">
-      <path-element>C:\#workspace\#mars\mars_quiz\lib\Swiftsuspenders-v2.1.0.swc</path-element>
+      <path-element>D:\#workspace\#mars\mars_quiz\lib\Swiftsuspenders-v2.1.0.swc</path-element>
     </library-path>
   </compiler>
   <file-specs>
-    <path-element>C:\#workspace\#mars\mars_quiz\src\Main.mxml</path-element>
+    <path-element>D:\#workspace\#mars\mars_quiz\src\Main.mxml</path-element>
   </file-specs>
   <default-background-color>#FFFFFF</default-background-color>
   <default-frame-rate>30</default-frame-rate>

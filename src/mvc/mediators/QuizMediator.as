@@ -1,5 +1,6 @@
 package mvc.mediators 
 {
+	import mvc.events.ModelEvent;
 	import mvc.models.QuizModel;
 	import mvc.models.TaskModel;
 	import robotlegs.bender.bundles.mvcs.Mediator;
@@ -28,14 +29,24 @@ package mvc.mediators
 			super.initialize();
 			
 			//MODEL
-			eventMap.mapListener(quizModel, QuizEvent.CURRENT_INDEX_CHANGED, updateQuizPage);
+			eventMap.mapListener(quizModel, ModelEvent.PROPERTY_CHANGED, onQuizModelChanged);
 			//VIEW
 			eventMap.mapListener(view.answers_list, MouseEvent.MOUSE_DOWN, _onAnswerClick);
 			
 			updateQuizPage();
 		}
 		
-		private function updateQuizPage(e:*=null):void
+		private function onQuizModelChanged(e:ModelEvent):void
+		{
+			switch(e.propertyName)
+			{
+				case "currentIndex":
+					updateQuizPage();
+					break;
+			}
+		}
+		
+		private function updateQuizPage():void
 		{
 			var task:TaskModel = quizModel.quizList.getItemAt(quizModel.currentIndex) as TaskModel;
 			

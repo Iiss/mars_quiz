@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <data>
-	<task>
+	<task key="0">
 		<question><![CDATA[Question1]]></question>
 		<answers>
 			<answer><![CDATA[Answer1-1]]></answer>
@@ -9,7 +9,7 @@
 			<answer><![CDATA[Answer1-4]]></answer>
 		</answers>
 	</task>
-	<task>
+	<task key="1">
 		<question><![CDATA[Question2]]></question>
 		<answers>
 			<answer><![CDATA[Answer2-1]]></answer>
@@ -18,7 +18,7 @@
 			<answer><![CDATA[Answer2-4]]></answer>
 		</answers>
 	</task>
-	<task>
+	<task key="2">
 		<question><![CDATA[Question3]]></question>
 		<answers>
 			<answer><![CDATA[Answer3-1]]></answer>
