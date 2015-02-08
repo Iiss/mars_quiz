@@ -18,7 +18,8 @@ package mvc.models
 		
 		public function parse(data:XML):void
 		{
-			_currentIndex = -1;
+			score = 0;
+			currentIndex = -1;
 			_quizList = new ArrayList;
 			
 			for each (var node:XML in data.task)
@@ -26,6 +27,7 @@ package mvc.models
 				var task:TaskModel = new TaskModel();
 				task.question = node.question[0].text();
 				task.answers = new ArrayList();
+				task.key = parseInt(node.@key.toString());
 				
 				for each(var answer:XML in node.answers.children())
 				{
@@ -39,6 +41,8 @@ package mvc.models
 			{
 				currentIndex = 0;
 			}
+			
+			notifyPropertyChanged("quizList");
 		}
 		
 		public function get currentIndex():int
@@ -55,9 +59,33 @@ package mvc.models
 			}
 		}
 		
+		public function get currentTask():TaskModel
+		{
+			if (quizList && currentIndex != -1 && currentIndex < quizList.length)
+			{
+				return quizList.getItemAt(currentIndex) as TaskModel;
+			}
+			
+			return null;
+		}
+		
 		public function get quizList():ArrayList 
 		{ 
 			return _quizList;
+		}
+		
+		public function get score():int
+		{
+			return _score;
+		}
+		
+		public function set score(value:int):void
+		{
+			if (_score != value)
+			{
+				_score = value;
+				notifyPropertyChanged("score");
+			}
 		}
 	}
 }

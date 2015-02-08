@@ -11,6 +11,7 @@
 		<s:State name="default"/>
 		<s:State name="loading_state"/>
 		<s:State name="quiz_ready_state"/>
+		<s:State name="quiz_finish_state"/>
 	</s:states>
 	<fx:Script>
 		<![CDATA[
@@ -31,12 +32,19 @@
 				
 			currentState = "default";
 		}
+		private function replay():void
+		{
+			currentState = "default";
+		}
+		
 		]]>
 	</fx:Script>
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	<views:Contents includeIn="default"/>
-<mx:ProgressBar indeterminate="true" label="Загрузка" includeIn="loading_state"/>
-<views:Quiz includeIn="quiz_ready_state"/>
+	<mx:ProgressBar indeterminate="true" label="Загрузка" includeIn="loading_state"/>
+	<views:Quiz includeIn="quiz_ready_state"/>
+	<views:ScoreScreen includeIn="quiz_ready_state,quiz_finish_state" />
+	<s:Button label="Еще раз..." includeIn="quiz_finish_state" click="replay()" />
 </s:Application>

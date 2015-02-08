@@ -2,6 +2,7 @@ package mvc.commands
 {
 	import mvc.models.QuizModel;
 	import robotlegs.bender.bundles.mvcs.Command;
+	import robotlegs.bender.extensions.contextView.ContextView;
 	/**
 	 * ...
 	 * @author liss
@@ -10,6 +11,9 @@ package mvc.commands
 	{
 		[Inject]
 		public var quizModel:QuizModel;
+		
+		[Inject]
+		public var contextView:ContextView;
 		
 		public function ShowNextTaskCommand() 
 		{
@@ -26,7 +30,11 @@ package mvc.commands
 				}
 				else
 				{
-					trace("time to show results");
+					var main:Main = contextView.view as Main;
+					if (main)
+					{
+						main.currentState = "quiz_finish_state";
+					}
 				}
 			}
 		}

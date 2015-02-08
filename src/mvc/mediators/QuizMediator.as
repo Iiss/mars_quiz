@@ -7,6 +7,7 @@ package mvc.mediators
 	import mvc.views.Quiz;
 	import flash.events.MouseEvent;
 	import mvc.events.QuizEvent;
+	import com.greensock.TweenNano;
 	/**
 	 * ...
 	 * @author liss
@@ -30,8 +31,6 @@ package mvc.mediators
 			
 			//MODEL
 			eventMap.mapListener(quizModel, ModelEvent.PROPERTY_CHANGED, onQuizModelChanged);
-			//VIEW
-			eventMap.mapListener(view.answers_list, MouseEvent.MOUSE_DOWN, _onAnswerClick);
 			
 			updateQuizPage();
 		}
@@ -48,10 +47,12 @@ package mvc.mediators
 		
 		private function updateQuizPage():void
 		{
-			var task:TaskModel = quizModel.quizList.getItemAt(quizModel.currentIndex) as TaskModel;
+			var task:TaskModel = quizModel.currentTask;
 			
 			if (task)
 			{
+				eventMap.mapListener(view.answers_list, MouseEvent.MOUSE_DOWN, _onAnswerClick);
+				
 				view.quiestion_txt.text = task.question;
 				view.answers_list.dataProvider = task.answers;
 			}
@@ -59,8 +60,23 @@ package mvc.mediators
 		
 		private function _onAnswerClick(e:MouseEvent):void
 		{
+			eventMap.unmapListener(view.answers_list, MouseEvent.MOUSE_DOWN, _onAnswerClick);
+			
 			var quizEvent:QuizEvent = new QuizEvent(QuizEvent.ANSWER_SELECTED);
+				quizEvent.key = view.answers_list.selectedIndex;
 				dispatch(quizEvent);
+				
+			TweenNano.delayedCall(.5, _dispatchNext);
+		}
+		
+		private function _dispatchNext():void
+		{
+			/*if (quizModel.currentIndex < quizModel.quizList.length - 1)
+			{
+				dispatch(new QuizEvent(QuizEvent.SHOW_NEXT_TASK));
+			}*/
+			
+			dispatch(new QuizEvent(QuizEvent.SHOW_NEXT_TASK));
 		}
 	
 	}
