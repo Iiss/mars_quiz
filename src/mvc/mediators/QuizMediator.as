@@ -55,6 +55,7 @@ package mvc.mediators
 				
 				view.quiestion_txt.text = task.question;
 				view.answers_list.dataProvider = task.answers;
+				view.task_img.source = task.img;
 			}
 		}
 		

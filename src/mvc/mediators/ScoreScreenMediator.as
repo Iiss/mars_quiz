@@ -26,6 +26,11 @@ package mvc.mediators
 			super.initialize();
 			
 			eventMap.mapListener(quizModel, ModelEvent.PROPERTY_CHANGED, _onModelChanged);
+			
+			if (quizModel)
+			{
+				view.updateScore(quizModel);
+			}
 		}
 		
 		private function _onModelChanged(e:ModelEvent):void

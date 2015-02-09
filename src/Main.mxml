@@ -5,7 +5,7 @@
 			   xmlns:views="mvc.views.*"
 			   initialize="onInit()">
 	<s:layout>
-		<s:VerticalLayout horizontalAlign="center"/>
+		<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" />
 	</s:layout>
 	<s:states>
 		<s:State name="default"/>
@@ -39,12 +39,19 @@
 		
 		]]>
 	</fx:Script>
+	<fx:Style>
+        @namespace s "library://ns.adobe.com/flex/spark";
+        @namespace mx "library://ns.adobe.com/flex/mx";
+        s|Application{
+            backgroundColor:#CCCCCC;
+        }
+    </fx:Style>
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	<views:Contents includeIn="default"/>
 	<mx:ProgressBar indeterminate="true" label="Загрузка" includeIn="loading_state"/>
 	<views:Quiz includeIn="quiz_ready_state"/>
-	<views:ScoreScreen includeIn="quiz_ready_state,quiz_finish_state" />
+	<views:ScoreScreen includeIn="quiz_finish_state" />
 	<s:Button label="Еще раз..." includeIn="quiz_finish_state" click="replay()" />
 </s:Application>

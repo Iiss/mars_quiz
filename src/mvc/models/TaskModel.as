@@ -11,5 +11,6 @@ package mvc.models
 		public var type:String;
 		public var answers:ArrayList;
 		public var key:int;
+		public var img:String;
 	}
 }

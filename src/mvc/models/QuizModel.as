@@ -29,6 +29,11 @@ package mvc.models
 				task.answers = new ArrayList();
 				task.key = parseInt(node.@key.toString());
 				
+				if (node.img.length() > 0)
+				{
+					task.img = node.img[0].text();
+				}
+				
 				for each(var answer:XML in node.answers.children())
 				{
 					task.answers.addItem(answer.toString());
