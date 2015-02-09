@@ -49,7 +49,7 @@
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
-	<views:Contents includeIn="default"/>
+	<views:Contents includeIn="default"/>	
 	<mx:ProgressBar indeterminate="true" label="Загрузка" includeIn="loading_state"/>
 	<views:Quiz includeIn="quiz_ready_state"/>
 	<views:ScoreScreen includeIn="quiz_finish_state" />

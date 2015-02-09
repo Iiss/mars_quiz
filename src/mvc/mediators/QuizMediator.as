@@ -56,18 +56,28 @@ package mvc.mediators
 				view.quiestion_txt.text = task.question;
 				view.answers_list.dataProvider = task.answers;
 				view.task_img.source = task.img;
+				
+				view.answers_list.mouseEnabled = true;
+				view.answers_list.mouseChildren = true;
 			}
 		}
 		
 		private function _onAnswerClick(e:MouseEvent):void
 		{
+			view.answers_list.mouseEnabled = false;
+			view.answers_list.mouseChildren = false;
+			
 			eventMap.unmapListener(view.answers_list, MouseEvent.MOUSE_DOWN, _onAnswerClick);
 			
 			var quizEvent:QuizEvent = new QuizEvent(QuizEvent.ANSWER_SELECTED);
 				quizEvent.key = view.answers_list.selectedIndex;
 				dispatch(quizEvent);
 				
-			TweenNano.delayedCall(.5, _dispatchNext);
+			view.answer_mark.isCorrect = (quizModel.currentTask && (quizModel.currentTask.key == quizEvent.key));
+			view.answer_mark.alpha = 1;
+			view.answer_mark.visible = true;
+			
+			TweenNano.to(view.answer_mark, .6, {delay:.5, alpha:0, onComplete:_dispatchNext } );
 		}
 		
 		private function _dispatchNext():void
@@ -76,6 +86,7 @@ package mvc.mediators
 			{
 				dispatch(new QuizEvent(QuizEvent.SHOW_NEXT_TASK));
 			}*/
+			view.answer_mark.visible = false;
 			
 			dispatch(new QuizEvent(QuizEvent.SHOW_NEXT_TASK));
 		}
