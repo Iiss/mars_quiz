@@ -1,12 +1,14 @@
 package mvc.models 
 {
 	import mx.collections.ArrayList;
+	import utils.XMLUtils;
 	/**
 	 * ...
 	 * @author liss
 	 */
 	public class QuizModel extends AbstractNotifier
 	{
+		public static const MAX_TASK_COUNT:int = 12;
 		private var _quizList:ArrayList;
 		private var _currentIndex:int;
 		private var _score:int;
@@ -21,6 +23,8 @@ package mvc.models
 			score = 0;
 			currentIndex = -1;
 			_quizList = new ArrayList;
+			
+			data.task = XMLUtils.shuffle(data.task,MAX_TASK_COUNT);
 			
 			for each (var node:XML in data.task)
 			{

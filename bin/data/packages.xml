@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <data>
 	<package name="МЕЖПЛАНЕТНЫЕ ИССЛЕДОВАНИЯ СОЛНЕЧНОЙ СИСТЕМЫ" id="solar_system"/>
+	<package name="ПЛАНЕТА МАРС" id="mars"/>
 	<package name="Test module" id="physics"/>
 </data>
